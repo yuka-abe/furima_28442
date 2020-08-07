@@ -7,9 +7,10 @@
 | nickname | string   | null: false            |
 | email    | string   | null: false            |
 | password | string   | null: false            |
-| first_name | string   | null: false, add_index |
-| last_name | string   | null: false, add_index |
-| name_kana | string   | null: false
+| first_name | string   | null: false, index |
+| last_name | string   | null: false, index |
+| first_name_kana | string   | null: false, index |	
+| last_name_kana | string   | null: false, index |
 | birthday | date | null: false |
 
 Association
@@ -44,11 +45,12 @@ Association
 | city        | string | null: false |
 | address     | string | null: false |
 | building    | string |  |
-| phone       | integer | null: false |
-|item | references | null:false, foreign_key: true|
+| phone       | string | null: false |
+| delivery | references | null:false, foreign_key: true|
 
 Association
 - has_one :item
+- belongs_to :delivery
 
 ## deliveries テーブル
 | Column      | Type   | Options     |
@@ -58,3 +60,5 @@ Association
 
 Association
 - belongs_to :item
+- belongs_to :user
+- has_one : address
