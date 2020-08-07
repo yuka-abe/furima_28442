@@ -1,24 +1,62 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type     | Options            |
+| -------- | -------- | ---------------------- |
+| nickname | string   | null: false            |
+| email    | string   | null: false            |
+| password | string   | null: false            |
+| name     | string   | null: false, add_index |
+| name_kana | string   | null: false
+| birthday | string | active_hash            |
 
-* Ruby version
+Association
+- has_many : items
+- has_one : delivery
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## items テーブル
+| Column      | Type       | Options |
+| ----------  | ---------- | ------- |
+| image | integer | null: false |
+| item_name | string     | null: false |
+| text | text | null: false |
+| status | string | null: false |
+| category | integer | null: false, active_hash |
+| delivery_fee | integer | null: false, active_hash |
+| area | integer | null: false, active_hash |
+| days | integer | null: false, active_hash |
+| card_customer | string | null: false, active_hash |
+| expiration_date | string | null: false, active_hash |
+| security | string | null: false, active_hash |
+| user_id | references | null: false,foreign_key: true|
 
-* Database initialization
+Association
+- belongs_to :user
+- has_one : delivery
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## address テーブル
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| postal      | string | null: false |
+| prefectures | string | null: false, active_hash |
+| city        | string | null: false |
+| address     | string | null: false |
+| building    | string |  |
+| phone       | integer | null: false |
+|item_id | references | null:false, foreign_key: true|
 
-* Deployment instructions
+Association
+- has_one :item
 
-* ...
+## deliveries テーブル
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| user_id | references | null: false ,foreign_key: true |
+| item_id | references | null: false ,foreign_key: true |
+
+Association
+- belongs_to :item
