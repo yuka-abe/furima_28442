@@ -7,7 +7,10 @@
 | nickname | string   | null: false            |
 | email    | string   | null: false            |
 | password | string   | null: false            |
-| name     | string   | null: false, add_index |
+| first_name | string   | null: false, add_index |
+| last_name | string   | null: false, add_index |
+| first_name_kana | string   | null: false, add_index |
+| last_name_kana | string   | null: false, add_index |
 | name_kana | string   | null: false
 | birthday | string | active_hash            |
 
@@ -20,17 +23,14 @@ Association
 ## items テーブル
 | Column      | Type       | Options |
 | ----------  | ---------- | ------- |
-| image | integer | null: false |
-| item_name | string     | null: false |
-| text | text | null: false |
-| status | string | null: false |
+| image | integer | null: false, active_hash |
+| name | string     | null: false, active_hash |
+| text | text | null: false, active_hash |
+| status | string | null: false, active_hash|
 | category | integer | null: false, active_hash |
 | delivery_fee | integer | null: false, active_hash |
 | area | integer | null: false, active_hash |
 | days | integer | null: false, active_hash |
-| card_customer | string | null: false, active_hash |
-| expiration_date | string | null: false, active_hash |
-| security | string | null: false, active_hash |
 | user_id | references | null: false,foreign_key: true|
 
 Association
@@ -42,7 +42,7 @@ Association
 | Column      | Type   | Options     |
 | ----------- | ------ | ----------- |
 | postal      | string | null: false |
-| prefectures | string | null: false, active_hash |
+| prefectures | integer | null: false|
 | city        | string | null: false |
 | address     | string | null: false |
 | building    | string |  |
