@@ -9,10 +9,8 @@
 | password | string   | null: false            |
 | first_name | string   | null: false, add_index |
 | last_name | string   | null: false, add_index |
-| first_name_kana | string   | null: false, add_index |
-| last_name_kana | string   | null: false, add_index |
 | name_kana | string   | null: false
-| birthday | string | active_hash            |
+| birthday | date | null: false |
 
 Association
 - has_many : items
@@ -31,7 +29,7 @@ Association
 | delivery_fee | integer | null: false, active_hash |
 | area | integer | null: false, active_hash |
 | days | integer | null: false, active_hash |
-| user_id | references | null: false,foreign_key: true|
+| user | references | null: false,foreign_key: true|
 
 Association
 - belongs_to :user
@@ -47,7 +45,7 @@ Association
 | address     | string | null: false |
 | building    | string |  |
 | phone       | integer | null: false |
-|item_id | references | null:false, foreign_key: true|
+|item | references | null:false, foreign_key: true|
 
 Association
 - has_one :item
@@ -55,8 +53,8 @@ Association
 ## deliveries テーブル
 | Column      | Type   | Options     |
 | ----------- | ------ | ----------- |
-| user_id | references | null: false ,foreign_key: true |
-| item_id | references | null: false ,foreign_key: true |
+| user | references | null: false ,foreign_key: true |
+| item | references | null: false ,foreign_key: true |
 
 Association
 - belongs_to :item
