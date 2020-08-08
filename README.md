@@ -22,10 +22,10 @@ Association
 ## items テーブル
 | Column      | Type       | Options |
 | ----------  | ---------- | ------- |
-| image | integer | null: false, active_hash |
-| name | string     | null: false, active_hash |
-| text | text | null: false, active_hash |
-| status | string | null: false, active_hash|
+| image | string | null: false, active_hash |
+| name | string     | null: false |
+| text | text | null: false |
+| status | integer | null: false, active_hash|
 | category | integer | null: false, active_hash |
 | delivery_fee | integer | null: false, active_hash |
 | area | integer | null: false, active_hash |
@@ -51,6 +51,7 @@ Association
 Association
 - has_one :item
 - belongs_to :delivery
+
 
 ## deliveries テーブル
 | Column      | Type   | Options     |
