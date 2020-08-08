@@ -15,7 +15,7 @@
 
 Association
 - has_many : items
-- has_one : delivery
+- has_many : delivery
 
 
 
