@@ -49,7 +49,6 @@ Association
 | delivery | references | null:false, foreign_key: true|
 
 Association
-- has_one :item
 - belongs_to :delivery
 
 
