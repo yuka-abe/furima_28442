@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions',
   }
 
-   root to: "items#index"
+  root to: "items#index"
+  get "items/new"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -15,4 +16,9 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :new, :create, :show] do
   end
+  resources :category, only: :show
+  resources :status, only: :show
+  resources :delivery_fee, only: :show
+  resources :days, only: :show
+  resources :area, only: :show
 end
