@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   #before_action :authenticate_user!
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create ]
 
-  #def root
 
   def index
   end
@@ -13,19 +12,21 @@ class ItemsController < ApplicationController
 
 
   def create
-    @item = Item.new(item_params)
+    # binding.pry
+    @item = Items.new(item_params)
 
-    if @item.save
+    if @item.valid?
+      @item.save
       redirect_to "/"
     else
-      render :new
+      render :new, alert: @item.errors.full_messages
     end
   end
 
 
+
   private
   def item_params
-    params.require(:item).parmit(:name, :image, :text, :category_id, :status_id, :delivery_fee_id, :area_id, :days_id)
+    params.require(:items).permit(:name, :image, :text, :category_id, :status_id, :delivery_fee_id, :area_id, :days_id, :price).merge(user_id: current_user.id)
   end
-
 end
