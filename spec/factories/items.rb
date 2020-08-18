@@ -8,7 +8,7 @@ FactoryBot.define do
     delivery_fee_id {3}
     area_id {3}
     days_id {3}
-    association :user
+    
     
     
   end
