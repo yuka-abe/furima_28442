@@ -1,4 +1,4 @@
-class Items < ApplicationRecord
+class Item < ApplicationRecord
   
 
   
@@ -15,9 +15,10 @@ class Items < ApplicationRecord
   with_options presence: true do
     half_width_figure = /\A[0-9]+\z/ #半角数字
 
+    validates :image
     validates :name 
     validates :text  
-    validates :price, numericality: { with: half_width_figure, only_integer: true, greater_then_or_equal_to: 300, less_than_or_equal_to: 9999999}
+    validates :price, numericality: { with: half_width_figure, only_integer: true }
 
     #ジャンルの選択が「--」の時は保存できないようにする
     validates :category_id, numericality: { other_than: 1 }
@@ -26,7 +27,8 @@ class Items < ApplicationRecord
     validates :area_id, numericality: { other_than: 1 }
     validates :days_id, numericality: { other_than: 1 }
   end
-
+  
+  validates_inclusion_of :price, in: 300..9999999 
 
 
 end
