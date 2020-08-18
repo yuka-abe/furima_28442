@@ -7,17 +7,17 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Items.new
+    @item = Item.new
   end
 
 
   def create
-    # binding.pry
-    @item = Items.new(item_params)
+  
+    @item = Item.new(item_params)
 
-    if @item.valid?
-      @item.save
-      redirect_to "/"
+    if @item.save
+      redirect_to root_path
+      
     else
       render :new, alert: @item.errors.full_messages
     end
@@ -27,6 +27,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:items).permit(:name, :image, :text, :category_id, :status_id, :delivery_fee_id, :area_id, :days_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :text, :category_id, :status_id, :delivery_fee_id, :area_id, :days_id, :price).merge(user_id: current_user.id)
   end
 end

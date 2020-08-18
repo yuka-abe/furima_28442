@@ -68,9 +68,21 @@ RSpec.describe Item, type: :model do
       @item.area_id = 5
       expect(@item).to be_valid
     end
-     it 'daysが選択されていないと保存できないこと' do
-      @item.days_id = 2
-      expect(@item).to be_valid
+    describe '#days' do
+        context '選択していれば商品出品できる' do
+          it '保存できること' do
+            @item.days_id = 3
+            expect(@item).to be_valid
+          end
+        end
+
+        context '選択していなければ出品できない' do
+          it '保存できないこと' do
+            @item.days_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Days must be other than 1") 
+          end
+        end
      end
   end
 end
