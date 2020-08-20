@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   root to: "items#index"
-  
+
 
   devise_scope :user do 
     get 'sign_in', :to => 'devise/sessions#new'
@@ -13,10 +13,12 @@ Rails.application.routes.draw do
   end 
 
   resources :items, only: [:index, :new, :create, :show] do
-  end
+    resources :show, only: [:index, :create]
+  
   resources :category, only: :show
   resources :status, only: :show
   resources :delivery_fee, only: :show
   resources :days, only: :show
   resources :area, only: :show
+  end
 end

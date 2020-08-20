@@ -1,7 +1,5 @@
 class Item < ApplicationRecord
   
-
-  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :status
@@ -10,6 +8,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days
   belongs_to :user
   has_one_attached :image
+  has_one :delivery
+
 
     #空の投稿を保存できないようにする
   with_options presence: true do

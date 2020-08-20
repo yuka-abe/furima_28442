@@ -7,3 +7,4 @@ if (window.location.pathname === '/items/new'){
    });
   });
 }
+
