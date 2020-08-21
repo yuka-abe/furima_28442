@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
 
   def create
   
+    @item = Item.find(params[:id])
 
     if @item.save
       redirect_to root_path
