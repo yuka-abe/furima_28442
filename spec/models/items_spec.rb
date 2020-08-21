@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
       @item.image = fixture_file_upload('public/test_image.png')
     end
 
-    it "全て入力されていれば出品できること" do
+    it '全て入力されていれば出品できること' do
       expect(@item).to be_valid
     end
 
@@ -23,7 +23,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Image can't be blank")
     end
     it 'nameが入力されていること' do
-      @item.name = "文房具"
+      @item.name = '文房具'
       expect(@item).to be_valid
     end
     it 'textが空ならば出品されないこと' do
@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
     it 'priceが空ならば出品できないこと' do
       @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
     it 'priceが半角数字以外だと出品できない' do
       @item.price = '３００'
@@ -47,7 +47,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
     it 'priceが9,999,999円よりも高額だと出品できないこと' do
-      @item.price = 19999999
+      @item.price = 19_999_999
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
@@ -69,20 +69,20 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
     describe '#days' do
-        context '選択していれば商品出品できる' do
-          it '保存できること' do
-            @item.days_id = 3
-            expect(@item).to be_valid
-          end
+      context '選択していれば商品出品できる' do
+        it '保存できること' do
+          @item.days_id = 3
+          expect(@item).to be_valid
         end
+      end
 
-        context '選択していなければ出品できない' do
-          it '保存できないこと' do
-            @item.days_id = 1
-            @item.valid?
-            expect(@item.errors.full_messages).to include("Days must be other than 1") 
-          end
+      context '選択していなければ出品できない' do
+        it '保存できないこと' do
+          @item.days_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include('Days must be other than 1')
         end
-     end
+      end
+    end
   end
 end

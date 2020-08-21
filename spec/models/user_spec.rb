@@ -58,7 +58,6 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password Include both letters and numbers')
     end
 
-
     it 'emailに＠がない場合は登録できないこと' do
       @user.email = 'aaaaaa'
       @user.valid?
@@ -101,31 +100,26 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Last name Last name full_width_characters')
     end
 
-
     describe '#ゼンカク' do
-
       it 'first_name_kanaがカタカナでないと登録できないこと' do
-      @user.first_name_kana = "ゼンカク"
-      @user.valid?
-      expect(@user).to be_valid('First name kana Full-width characters')
+        @user.first_name_kana = 'ゼンカク'
+        @user.valid?
+        expect(@user).to be_valid('First name kana Full-width characters')
       end
 
-      #last_name_kanaは全角カタカナでないけばならない。
+      # last_name_kanaは全角カタカナでないけばならない。
 
-      it "last_name_kanaはカタカナでなければならない" do
-        @user.last_name_kana = "ゼンカク"
+      it 'last_name_kanaはカタカナでなければならない' do
+        @user.last_name_kana = 'ゼンカク'
         @user.valid?
         expect(@user).to be_valid('Last name kana Full-width characters')
       end
     end
-  
 
     it '生年月日がない場合登録できないこと' do
       @user.birthday = nil
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
-
- 
   end
 end

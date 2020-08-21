@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   }
 
   root to: "items#index"
+  
+
+
 
 
   devise_scope :user do 
@@ -12,7 +15,7 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy'
   end 
 
-  resources :items, only: [:index, :new, :create, :show, :edit] do
+  resources :items do
     resources :show, only: [:index, :create]
   
   resources :category, only: :show
@@ -20,5 +23,7 @@ Rails.application.routes.draw do
   resources :delivery_fee, only: :show
   resources :days, only: :show
   resources :area, only: :show
+
+  resources :roots
   end
 end
