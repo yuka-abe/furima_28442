@@ -16,7 +16,6 @@ class User < ApplicationRecord
     validates :birthday
     validates :nickname
     validates :password, format: { with: half_width_alphanumeric, message: 'Include both letters and numbers' } # 半角英数どちらも
-
   end
 
   has_many :items
