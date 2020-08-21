@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy'
   end 
 
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items, only: [:index, :new, :create, :show, :edit] do
     resources :show, only: [:index, :create]
   
   resources :category, only: :show
