@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_fee
   belongs_to_active_hash :area
   belongs_to_active_hash :days
+
   belongs_to :user
   has_one_attached :image
   has_one :delivery
