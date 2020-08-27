@@ -62,5 +62,11 @@ RSpec.describe DeliveryAddress, type: :model do
       @delivery_address.valid?
       expect(@delivery_address.errors.full_messages).to include('Phone is invalid')
     end
+
+    it 'tokenが空だと保存できないこと' do
+      @delivery_address.token = nil
+      @delivery_address.valid?
+      expect(@delivery_address.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end

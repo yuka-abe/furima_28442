@@ -2,10 +2,10 @@ class DeliveryAddress
   include ActiveModel::Model
   attr_accessor :postal, :prefectures_id, :city, :address, :building, :phone, :item_id, :user_id, :token
 
+  post_code = /\A\d{3}[-]\d{4}\z/ # 郵便番号（ハイフンあり7桁）
+  phone_code = /\A\d{10,11}\z/ # 電話番号(ハイフンなし10桁or11桁)
+  
   with_options presence: true do
-    post_code = /\A\d{3}[-]\d{4}\z/ # 郵便番号（ハイフンあり7桁）
-    phone_code = /\A\d{10,11}\z/ # 電話番号(ハイフンなし10桁or11桁)
-
     # 住所に関するバリデーション
     validates :postal, format: { with: post_code, message: 'Input correctly' }
     validates :phone, format: { with: phone_code }
@@ -15,6 +15,9 @@ class DeliveryAddress
     validates :prefectures_id, numericality: { other_than: 1, message: 'select' }
     validates :item_id
     validates :user_id
+    #クレジットカードのバリデーション
+    validates :token
+
   end
 
   def save
