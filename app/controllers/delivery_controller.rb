@@ -12,15 +12,13 @@ class DeliveryController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    # binding.pry
     @delivery_address = DeliveryAddress.new(delivery_address_params)
-    # binding.pry
+
     if @delivery_address.valid?
       pay_item
       @delivery_address.save
       redirect_to root_path
     else
-      # binding.pry
       render 'index'
     end
   end
