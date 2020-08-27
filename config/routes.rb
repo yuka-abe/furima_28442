@@ -16,14 +16,8 @@ Rails.application.routes.draw do
   end 
 
   resources :items do
-    resources :show, only: [:index, :create]
-  
-  resources :category, only: :show
-  resources :status, only: :show
-  resources :delivery_fee, only: :show
-  resources :days, only: :show
-  resources :area, only: :show
-
-  resources :roots
+    resources :delivery, only: [:index, :create, :new]
   end
+
+  
 end

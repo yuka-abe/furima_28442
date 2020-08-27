@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_current_user
+  # before_action :corrent_user, only: [:]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -45,9 +45,14 @@ class ItemsController < ApplicationController
 
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
-   end
+  end
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def corrent_user
+    @exhibitor = current_user.exhibitor.find_by(id: params[:id])
+    redirect_to root_path unless @exhibitor
   end
 end
